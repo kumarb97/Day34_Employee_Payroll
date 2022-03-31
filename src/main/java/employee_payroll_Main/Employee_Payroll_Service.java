@@ -1,5 +1,5 @@
 /*
- * UC1 : Ability to retrieve Employee's data from database;
+ * UC3 : Ability to update employee salary by using name;
  *       
  */
 package employee_payroll_Main;
@@ -9,31 +9,52 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Employee_Payroll_Service {
-	
 	/*
 	 * Main method
 	 * @param args - Default Java param (Not used)
 	 */
 	public static void main(String[] args)throws IOException {
+	
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("___________________________________");
 		System.out.println("Welcome to Employee payroll service");
 		System.out.println("___________________________________");
 		while(true) {
 			System.out.println("Enter 1 to display Employee's data");
+			System.out.println("Enter 2 to Update Emloyee's data");
 			int c= Integer.parseInt(br.readLine());
 			switch(c) {
 			case 1:
 				Employee_Payroll_Service.displayEmployee();
+			case 2:
+				Employee_Payroll_Service.updateEmployee();
 			}
 		}
 
 	}
-	
+	/*
+	 * Method to update employee salary using name.
+	 */
+	public static void updateEmployee() {
+		try {
+			Connection con = ConnectionProvider.setConnection();
+			String query = "UPDATE employee_payroll SET Salary =30000.0 WHERE name ='Smriti'";
+			PreparedStatement pstmt = con.prepareCall(query);
+			pstmt.executeUpdate();
+			System.out.println("Updated Successfully");
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 	/*
 	 * dislplayEmployee Method is used to retrieve all employee
 	 * data from database
