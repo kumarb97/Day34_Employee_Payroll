@@ -1,8 +1,16 @@
 /*
- * UC1 : Ability to create a payroll service database and have java program
- *       connect to database.
+ * UC1 : Ability to retrieve Employee's data from database;
+ *       
  */
 package employee_payroll_Main;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class Employee_Payroll_Service {
 	
@@ -10,10 +18,48 @@ public class Employee_Payroll_Service {
 	 * Main method
 	 * @param args - Default Java param (Not used)
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("___________________________________");
 		System.out.println("Welcome to Employee payroll service");
-		ConnectionProvider.setConnection();
+		System.out.println("___________________________________");
+		while(true) {
+			System.out.println("Enter 1 to display Employee's data");
+			int c= Integer.parseInt(br.readLine());
+			switch(c) {
+			case 1:
+				Employee_Payroll_Service.displayEmployee();
+			}
+		}
 
+	}
+	
+	/*
+	 * dislplayEmployee Method is used to retrieve all employee
+	 * data from database
+	 */
+	private static void displayEmployee() {
+		try {
+		Connection con = ConnectionProvider.setConnection();
+		String query = "select * from employee_payroll";
+		Statement stmt = con.createStatement();
+		ResultSet set = stmt.executeQuery(query);
+		while(set.next()) {
+			int id = set.getInt(1);
+			String name = set.getString(2);
+			Double salary = set.getDouble(3);
+			Date date = set.getDate(4);
+			System.out.println("________________________");
+			System.out.println("ID : " +id);
+			System.out.println("Name : " +name);
+			System.out.println("Salary : " +salary);
+			System.out.println("Date : " +date);
+			System.out.println("________________________");
+		}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

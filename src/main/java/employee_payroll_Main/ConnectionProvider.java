@@ -8,7 +8,7 @@ public class ConnectionProvider {
 	/*
 	 * Method to set connection
 	 */
-	public static void setConnection() {
+	public static Connection setConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://localhost:3306/payroll_service";
@@ -20,6 +20,7 @@ public class ConnectionProvider {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+		return con;
 	}
 
 }

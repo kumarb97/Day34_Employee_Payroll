@@ -1,12 +1,14 @@
 package employee_payroll_Main;
 
+import java.sql.Date;
+
 public class Employee {
 	private String name;
 	private int id;
 	private double salary;
-	private String date;
+	private Date date;
 	
-	public Employee(String name, int id, double salary, String date) {
+	public Employee(String name, int id, double salary, Date date) {
 		super();
 		this.name = name;
 		this.id = id;
@@ -38,11 +40,11 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
