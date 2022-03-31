@@ -4,7 +4,7 @@ import org.junit.*;
 import employee_payroll_Main.*;
 
 public class employee_payroll_Test {
-	
+	//Test cases
 	@Test
 	public void returnTrue_whenConnectionIsEstablished() {
 	boolean expected = true;

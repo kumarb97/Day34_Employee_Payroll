@@ -1,5 +1,5 @@
 /*
- * UC3 : Ability to update employee salary by using name;
+ * UC4 : Ability to update employee salary by using Prepared statement;
  *       
  */
 package employee_payroll_Main;
